@@ -2,6 +2,7 @@
 #' @param x Vector of length 1 which contain query.
 #' @param tag Logical. Do you need morphological tags? By default is FALSE.
 #' @param n.results Integer. Define number of examples from the corpus. By default is 100
+#' @param corpus vector with a type of the corpus: "nkjp300", "nkjp1800", "nkjp1M", "ipi250", "ipi030", "frequency-dictionary"
 #' @author George Moroz <agricolamz@gmail.com>
 #' @examples
 #' pl_corpus("boisz się")
@@ -11,7 +12,7 @@
 #' @export
 #' @import rvest, httr, xml2
 
-pl_corpus <- function(x, tag = F, n.results = 100){
+pl_corpus <- function(x, tag = F, n.results = 100, corpus = "nkjp300"){
 
 library(rvest)
 library(httr)
@@ -42,7 +43,7 @@ settings <- httr::POST(url = "http://nkjp.pl/poliqarp/settings/",
 
 # get request data
 request <- httr::POST(url = "http://nkjp.pl/poliqarp/query/",
-                body = list(query = x, corpus = "nkjp300"),
+                body = list(query = x, corpus = corpus),
                 set_cookies(domain = "#HttpOnly_nkjp.pl",
                             flag = "FALSE",
                             path = "/",
