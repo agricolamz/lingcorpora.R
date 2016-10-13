@@ -18,7 +18,7 @@ pl.corpus <- function(x, tag = F, n.results = 100, corpus = "nkjp300"){
   library(httr)
   
   if(length(x) != 1){
-    warning('x must be of length 1. If you want a dataframe with different queries try \n do.call("rbind.data.frame", sapply(x, pl_corpus, simplify = F))')
+    warning('x must be of length 1. If you want a dataframe with different queries try \n do.call("rbind.data.frame", sapply(x, pl.corpus, simplify = F))')
   }
   # show tags?
   if(tag == T){
