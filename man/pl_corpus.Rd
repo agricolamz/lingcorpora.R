@@ -4,7 +4,8 @@
 \alias{pl_corpus}
 \title{Post query to the National Corpus of Polish (nkjp.pl). Don't forget to check http://nkjp.pl/poliqarp/help/plse3.html#x4-50003 for advanced query language.}
 \usage{
-pl_corpus(query, tag = F, n_results = 100, corpus = "nkjp300")
+pl_corpus(query, tag = F, n_results = 100, corpus = "nkjp300", kwic = T,
+  write = F)
 }
 \arguments{
 \item{query}{Vector of length 1 which contain query.}
@@ -14,13 +15,17 @@ pl_corpus(query, tag = F, n_results = 100, corpus = "nkjp300")
 \item{n_results}{Integer. Define number of examples from the corpus. By default is 100}
 
 \item{corpus}{vector with a type of the corpus: "nkjp300", "nkjp1800", "nkjp1M", "ipi250", "ipi030", "frequency-dictionary"}
+
+\item{kwic}{Logical. KWIC (key word in context) is the format for resulted lines. If TRUE, then it returns a dataframe with query in the middle and left and right contexts. If FALSE, then it returns each result in one string. By default is TRUE.}
+
+\item{write}{This argument writes a file in the working derictory (see function getwd() and setwd() for more information). If FALSE, then it creates a dataframe in Global Environment. Otherwise function writes a .tsv file with the name frome the argument value. By default is FALSE.}
 }
 \description{
 Post query to the National Corpus of Polish (nkjp.pl). Don't forget to check http://nkjp.pl/poliqarp/help/plse3.html#x4-50003 for advanced query language.
 }
 \examples{
 pl_corpus("boisz się")
-pl_corpus("boisz się", tag = T, n.results = 40)
+pl_corpus("boisz się", tag = TRUE, n_results = 40)
 pl_corpus("An*a")
 pl_corpus("[base = 'strzyc']")
 }

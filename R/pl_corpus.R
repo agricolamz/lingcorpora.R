@@ -3,18 +3,21 @@
 #' @param tag Logical. Do you need morphological tags? By default is FALSE.
 #' @param n_results Integer. Define number of examples from the corpus. By default is 100
 #' @param corpus vector with a type of the corpus: "nkjp300", "nkjp1800", "nkjp1M", "ipi250", "ipi030", "frequency-dictionary"
+#' @param kwic Logical. KWIC (key word in context) is the format for resulted lines. If TRUE, then it returns a dataframe with query in the middle and left and right contexts. If FALSE, then it returns each result in one string. By default is TRUE.
+#' @param write This argument writes a file in the working derictory (see function getwd() and setwd() for more information). If FALSE, then it creates a dataframe in Global Environment. Otherwise function writes a .tsv file with the name frome the argument value. By default is FALSE.
 #' @author George Moroz <agricolamz@gmail.com>
 #' @examples
 #' pl_corpus("boisz się")
-#' pl_corpus("boisz się", tag = T, n.results = 40)
+#' pl_corpus("boisz się", tag = TRUE, n_results = 40)
 #' pl_corpus("An*a")
 #' pl_corpus("[base = 'strzyc']")
 #' @export
-#' @import rvest
-#' @import httr
 #' @import xml2
+#' @import selectr
+#' @import httr
+#' @import rvest
 
-pl_corpus <- function(query, tag = F, n_results = 100, corpus = "nkjp300"){
+pl_corpus <- function(query, tag = F, n_results = 100, corpus = "nkjp300", kwic = T, write = F){
     if(length(query) != 1){
       warning('x must be of length 1. If you want a dataframe with different queries try \n do.call("rbind.data.frame", sapply(x, pl.corpus, simplify = F))')
     }
@@ -103,5 +106,15 @@ pl_corpus <- function(query, tag = F, n_results = 100, corpus = "nkjp300"){
     right.part <- gsub("\\s+", " ", right.part) # clean data
 
     results <- data.frame(left.part, center.part, right.part, stringsAsFactors = F)
-    return(results)}
+
+    # diparse kwic format into plain text
+    if(kwic == F){
+      results <- apply(results, 1, function(x) paste(x, collapse = ""))
+    }
+
+    # write argument
+    if(write != F){
+      write.table(results, paste0(write, ".csv"), row.names = F, sep = "\t")
+    } else {return(results)}
+}
 # end of the function

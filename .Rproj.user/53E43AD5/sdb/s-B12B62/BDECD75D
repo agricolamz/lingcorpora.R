@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "df2 <- paste(df[,1:3], collapse = \"\")\ndf2 <- apply(df[,1:3], 1, function(x) paste(x, collapse = \"\"))\n\n\nsetwd(\"/home/agricolamz/_DATA/OneDrive1/_Work/github/lingcorpora\")\n",
+    "created" : 1479560239827.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2537259653",
+    "id" : "BDECD75D",
+    "lastKnownWriteTime" : 2,
+    "last_content_update" : 1479560713576,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

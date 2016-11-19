@@ -3,4 +3,5 @@
 export(pl_corpus)
 import(httr)
 import(rvest)
+import(selectr)
 import(xml2)

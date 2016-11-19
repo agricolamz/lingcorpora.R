@@ -4,9 +4,11 @@ Title: Linguistic Corpora API
 Version: 0.1.0
 Depends:
     R (>= 2.10)
-Imports: httr,
-    rvest,
-    xml2
+Imports:
+    xml2,
+    selectr,
+    httr,
+    rvest
 Author: George Moroz <agricolamz@gmail.com>
 Maintainer: George Moroz <agricolamz@gmail.com>
 Description: This package provides R with API from different linguistic
