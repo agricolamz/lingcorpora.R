@@ -1,0 +1,67 @@
+---
+title: "How to use lingcorpora?"
+author: "A. Koshevoy, G. Moroz"
+output:
+  html_document:
+    theme: lumen
+    highlight: tango
+    toc: yes
+    toc_position: right
+    toc_float: yes
+    smooth_scroll: false
+    number_sections: true
+---
+
+# About lingcorpora
+`lingcorpora` package This package provides R with API from different linguistic corpora. A tutorial for this package is avaliable on GitHub wiki. This package includes APIs for:
+
+* [National Corpus of Russian Language](http://www.ruscorpora.ru/)
+* [National Corpus of Polish](nkjp.pl)
+
+# Instalation
+## R version
+Get the released version from GitHub:
+```r
+install.packages("devtools")
+devtools::install_github("agricolamz/lingcorpora.R", dependencies = TRUE)
+```
+
+Load a library:
+```r
+library(lingcorpora.R)
+```
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=F, warning = F)
+```
+
+## Python version
+If you want to install our package, please tap the following command in Terminal:
+```{bash, eval = F}
+pip3 install git+https://github.com/alexeykosh/lingcorpora.py
+```
+
+For import it in your project, tap:
+```{python, engine.path = '/usr/bin/python3'}
+import lingcorpora
+```
+
+ADD about python3!!!
+
+# Usage
+## National Corpus of Russian Language
+### R version
+### Python version
+## National Corpus of Polish
+### R version
+### Python version
+```{python, engine.path = '/usr/bin/python3'}
+from lingcorpora import pl_search as pl_corpus
+print(pl_corpus("tata"))
+```
+
+
+
+
+
+
+
