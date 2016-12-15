@@ -1,5 +1,5 @@
 ---
-title: "How to use lingcorpora?"
+title: "lingcorpora: get data from different corpora"
 author: "A. Koshevoy, G. Moroz"
 output:
   html_document:
