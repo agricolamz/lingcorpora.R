@@ -1,0 +1,3 @@
+"0","library(lingcorpora)"
+"0","df <- pl_corpus(query = ""tata"")"
+"0","head(df)"

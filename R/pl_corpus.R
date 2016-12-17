@@ -1,7 +1,7 @@
 #' Post query to the National Corpus of Polish (nkjp.pl). Don't forget to check http://nkjp.pl/poliqarp/help/plse3.html#x4-50003 for advanced query language.
 #' @param query Vector of length 1 which contain query.
 #' @param tag Logical. Do you need morphological tags? By default is FALSE.
-#' @param n_results Integer. Define number of examples from the corpus. By default is 100
+#' @param n_results Integer. Defines number of examples from the corpus. By default is 10
 #' @param corpus vector with a type of the corpus: "nkjp300", "nkjp1800", "nkjp1M", "ipi250", "ipi030", "frequency-dictionary"
 #' @param kwic Logical. KWIC (key word in context) is the format for resulted lines. If TRUE, then it returns a dataframe with query in the middle and left and right contexts. If FALSE, then it returns each result in one string. By default is TRUE.
 #' @param write This argument writes a file in the working derictory (see function getwd() and setwd() for more information). If FALSE, then it creates a dataframe in Global Environment. Otherwise function writes a .tsv file with the name frome the argument value. By default is FALSE.
@@ -17,7 +17,7 @@
 #' @import httr
 #' @import rvest
 
-pl_corpus <- function(query, tag = F, n_results = 100, corpus = "nkjp300", kwic = T, write = F){
+pl_corpus <- function(query, tag = F, n_results = 10, corpus = "nkjp300", kwic = T, write = F){
     if(length(query) != 1){
       warning('x must be of length 1. If you want a dataframe with different queries try \n do.call("rbind.data.frame", sapply(x, pl.corpus, simplify = F))')
     }

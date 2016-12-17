@@ -1,0 +1,3 @@
+"0","df <- pl_corpus(query = ""tata"","
+"0","                corpus = ""frequency-dictionary"")"
+"0","head(df)"

@@ -256,7 +256,7 @@ div.tocify {
 <li><a href="nkjp.pl">National Corpus of Polish</a></li>
 </ul>
 </div>
-<div id="instalation" class="section level1">
+<div id="instalation" class="section level1 tabset tabset-fade tabset-pills">
 <h1><span class="header-section-number">2</span> Instalation</h1>
 <div id="r-version" class="section level2">
 <h2><span class="header-section-number">2.1</span> R version</h2>
@@ -277,7 +277,7 @@ devtools::<span class="kw">install_github</span>(<span class="st">&quot;agricola
 </div>
 <div id="usage" class="section level1">
 <h1><span class="header-section-number">3</span> Usage</h1>
-<div id="national-corpus-of-russian-language" class="section level2">
+<div id="national-corpus-of-russian-language" class="section level2 tabset tabset-fade tabset-pills">
 <h2><span class="header-section-number">3.1</span> National Corpus of Russian Language</h2>
 <div id="r-version-1" class="section level3">
 <h3><span class="header-section-number">3.1.1</span> R version</h3>
@@ -286,10 +286,150 @@ devtools::<span class="kw">install_github</span>(<span class="st">&quot;agricola
 <h3><span class="header-section-number">3.1.2</span> Python version</h3>
 </div>
 </div>
-<div id="national-corpus-of-polish" class="section level2">
+<div id="national-corpus-of-polish" class="section level2 tabset tabset-fade tabset-pills">
 <h2><span class="header-section-number">3.2</span> National Corpus of Polish</h2>
 <div id="r-version-2" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> R version</h3>
+<p>The basic function for searching in National Corpus of Polish is <code>pl_corpus</code>. This function creates a dataframe with a results from the corpus. The function <code>pl_corpus</code> have a lot of arguments (as in all R function, it is not obligatory to write names of the arguments):</p>
+<ul>
+<li><strong><code>query</code></strong> — the sole obligatory argument with your query</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lingcorpora)
+df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;tata&quot;</span>)
+<span class="kw">head</span>(df)</code></pre></div>
+<pre><code>##                                                  left.part center.part
+## 1          mi łóżko do snu, pieczołowicie, jak kiedyś mój        tata 
+## 2  m mamy ochraniającej synka przed ojcem ani wymówek, że        tata 
+## 3           m do twojej żony, że ten dzidziuś to wykapany        tata 
+## 4                      tata! - usłyszałam za sobą. - Czyj        tata 
+## 5    W sierpniu w piaskownicy spotkałam mężczyznę. Był to        tata 
+## 6   on, więc nie chcieli tracić takich pieniędzy. Nianiek        tata 
+##                                                           right.part
+## 1   . Noemi przyrządziła pyszny obiad: panierowaną pierś kurczaka z 
+## 2                          jest zbyt surowy, a synek za mały, słaby 
+## 3                               ! - usłyszałam za sobą. - Czyj tata 
+## 4                 ? - nie zrozumiał mąż, stawiając siatkę z ciastem 
+## 5  Rafałka. Siedział na urlopie wychowawczym i spacerował z synkiem 
+## 6              Rafałka nie uznawał. Wiedział mnóstwo o porodach, no</code></pre>
+<ul>
+<li><strong><code>tag</code></strong> — if TRUE all the words in a result will have morphological tags</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;tata&quot;</span>, <span class="dt">tag =</span> <span class="ot">TRUE</span>)
+<span class="kw">head</span>(df)</code></pre></div>
+<pre><code>##                                                                                                                                                                                                                                                                                left.part
+## 1                                            mi [ja:ppron12:sg:dat:m1:pri:nakc] łóżko [łóżko:subst:sg:acc:n] do [do:prep:gen] snu [sen:subst:sg:gen:m3], [,:interp] pieczołowicie [pieczołowicie:adv:pos], [,:interp] jak [jak:adv:pos] kiedyś [kiedyś:adv] mój [mój:adj:sg:nom:m1:pos] 
+## 2  m [być:aglt:sg:pri:imperf:nwok] mamy [mieć:fin:pl:pri:imperf] ochraniającej [ochraniać:pact:sg:gen:f:imperf:aff] synka [synek:subst:sg:gen:m1] przed [przed:prep:inst:nwok] ojcem [ojciec:subst:sg:inst:m1] ani [ani:conj] wymówek [wymówka:subst:pl:gen:f], [,:interp] że [że:comp] 
+## 3                                m [być:aglt:sg:pri:imperf:nwok] do [do:prep:gen] twojej [twój:adj:sg:loc:f:pos] żony [żona:subst:sg:gen:f], [,:interp] że [że:comp] ten [ten:adj:sg:nom:m3:pos] dzidziuś [dzidziuś:subst:sg:nom:m1] to [to:pred] wykapany [wykapany:adj:sg:nom:m3:pos] 
+## 4                                                               tata [tata:subst:sg:nom:m1]! [!:interp] - [-:interp] usłyszała [usłyszeć:praet:sg:f:perf]m [być:aglt:sg:pri:imperf:nwok] za [za:prep:acc] sobą [się:siebie:inst]. [.:interp] - [-:interp] Czyj [czyj:adj:sg:nom:m3:pos] 
+## 5    W [w:prep:loc:nwok] sierpniu [sierpień:subst:sg:loc:m3] w [w:prep:loc:nwok] piaskownicy [piaskownica:subst:sg:gen:f] spotkała [spotkać:praet:sg:f:perf]m [być:aglt:sg:pri:imperf:nwok] mężczyznę [mężczyzna:subst:sg:acc:m1]. [.:interp] Był [być:praet:sg:m1:imperf] to [to:pred] 
+## 6                    on [on:ppron3:sg:nom:m1:ter:akc:npraep], [,:interp] więc [więc:conj] nie [nie:qub] chcieli [chcieć:praet:pl:m1:imperf] tracić [tracić:inf:imperf] takich [taki:adj:pl:gen:m3:pos] pieniędzy [pieniądz:subst:pl:gen:m3]. [.:interp] Nianiek [niańka:subst:pl:gen:f] 
+##                     center.part
+## 1  tata [tata:subst:sg:nom:m1] 
+## 2  tata [tata:subst:sg:nom:m1] 
+## 3  tata [tata:subst:sg:nom:m1] 
+## 4  tata [tata:subst:sg:nom:m1] 
+## 5  tata [tata:subst:sg:nom:m1] 
+## 6  tata [tata:subst:sg:nom:m1] 
+##                                                                                                                                                                                                                                                                                                 right.part
+## 1  . [.:interp] Noemi [Noemi:subst:sg:gen:f] przyrządziła [przyrządzić:praet:sg:f:perf] pyszny [pyszny:adj:sg:nom:m3:pos] obiad [obiad:subst:sg:acc:m3]: [::interp] panierowaną [panierować:ppas:sg:acc:f:imperf:aff] pierś [pierś:subst:sg:acc:f] kurczaka [kurczak:subst:sg:gen:m2] z [z:prep:gen:nwok] 
+## 2                                                                          jest [być:fin:sg:ter:imperf] zbyt [zbyt:adv] surowy [surowy:adj:sg:nom:m1:pos], [,:interp] a [a:conj] synek [synek:subst:sg:nom:m1] za [za:prep:acc] mały [mały:adj:sg:nom:m3:pos], [,:interp] słaby [słaby:adj:sg:nom:m3:pos] 
+## 3                                                                                ! [!:interp] - [-:interp] usłyszała [usłyszeć:praet:sg:f:perf]m [być:aglt:sg:pri:imperf:nwok] za [za:prep:acc] sobą [się:siebie:inst]. [.:interp] - [-:interp] Czyj [czyj:adj:sg:nom:m3:pos] tata [tata:subst:sg:nom:m1] 
+## 4                                                                ? [?:interp] - [-:interp] nie [nie:qub] zrozumiał [zrozumieć:praet:sg:m1:perf] mąż [mąż:subst:sg:nom:m1], [,:interp] stawiając [stawiać:pcon:imperf] siatkę [siatka:subst:sg:acc:f] z [z:prep:gen:nwok] ciastem [ciasto:subst:sg:inst:n] 
+## 5           Rafałka [Rafałek:subst:sg:gen:m1]. [.:interp] Siedział [siedzieć:praet:sg:m1:imperf] na [na:prep:acc] urlopie [urlop:subst:sg:loc:m3] wychowawczym [wychowawczy:adj:sg:loc:m3:pos] i [i:conj] spacerował [spacerować:praet:sg:m1:imperf] z [z:prep:gen:nwok] synkiem [synek:subst:sg:inst:m1] 
+## 6                                                        Rafałka [Rafałek:subst:sg:gen:m1] nie [nie:qub] uznawał [uznawać:praet:sg:m1:imperf]. [.:interp] Wiedział [wiedzieć:praet:sg:m1:imperf] mnóstwo [mnóstwo:subst:sg:acc:n] o [o:prep:loc] porodach [poród:subst:pl:loc:m3], [,:interp] no [no:qub]</code></pre>
+<ul>
+<li><strong><code>n_results</code></strong> defines number of examples from the corpus. By default is 10.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;tata&quot;</span>, <span class="dt">n_results =</span> <span class="dv">6</span>)
+<span class="kw">head</span>(df)</code></pre></div>
+<pre><code>##                                                  left.part center.part
+## 1          mi łóżko do snu, pieczołowicie, jak kiedyś mój        tata 
+## 2  m mamy ochraniającej synka przed ojcem ani wymówek, że        tata 
+## 3           m do twojej żony, że ten dzidziuś to wykapany        tata 
+## 4                      tata! - usłyszałam za sobą. - Czyj        tata 
+## 5    W sierpniu w piaskownicy spotkałam mężczyznę. Był to        tata 
+## 6   on, więc nie chcieli tracić takich pieniędzy. Nianiek        tata 
+##                                                           right.part
+## 1   . Noemi przyrządziła pyszny obiad: panierowaną pierś kurczaka z 
+## 2                          jest zbyt surowy, a synek za mały, słaby 
+## 3                               ! - usłyszałam za sobą. - Czyj tata 
+## 4                 ? - nie zrozumiał mąż, stawiając siatkę z ciastem 
+## 5  Rafałka. Siedział na urlopie wychowawczym i spacerował z synkiem 
+## 6              Rafałka nie uznawał. Wiedział mnóstwo o porodach, no</code></pre>
+<ul>
+<li><strong><code>corpus</code></strong> — vector with a type of the corpus: “nkjp300”, “nkjp1800”, “nkjp1M”, “ipi250”, “ipi030”, “frequency-dictionary”</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;tata&quot;</span>, <span class="dt">corpus =</span> <span class="st">&quot;nkjp1M&quot;</span>)
+<span class="kw">head</span>(df)</code></pre></div>
+<pre><code>##                                                  left.part center.part
+## 1          mi łóżko do snu, pieczołowicie, jak kiedyś mój        tata 
+## 2  m mamy ochraniającej synka przed ojcem ani wymówek, że        tata 
+## 3           m do twojej żony, że ten dzidziuś to wykapany        tata 
+## 4                      tata! - usłyszałam za sobą. - Czyj        tata 
+## 5    W sierpniu w piaskownicy spotkałam mężczyznę. Był to        tata 
+## 6   on, więc nie chcieli tracić takich pieniędzy. Nianiek        tata 
+##                                                           right.part
+## 1   . Noemi przyrządziła pyszny obiad: panierowaną pierś kurczaka z 
+## 2                          jest zbyt surowy, a synek za mały, słaby 
+## 3                               ! - usłyszałam za sobą. - Czyj tata 
+## 4                 ? - nie zrozumiał mąż, stawiając siatkę z ciastem 
+## 5  Rafałka. Siedział na urlopie wychowawczym i spacerował z synkiem 
+## 6              Rafałka nie uznawał. Wiedział mnóstwo o porodach, no</code></pre>
+<ul>
+<li><strong><code>kwic</code></strong> (key word in context) is the format for resulted lines. If TRUE, then it returns a dataframe with query in the middle and left and right contexts. If FALSE, then it returns each result in one string. By default is TRUE.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;tata&quot;</span>, <span class="dt">kwic =</span> <span class="ot">FALSE</span>)
+<span class="kw">head</span>(df)</code></pre></div>
+<pre><code>## [1] &quot; mi łóżko do snu, pieczołowicie, jak kiedyś mój  tata  . Noemi przyrządziła pyszny obiad: panierowaną pierś kurczaka z &quot;       
+## [2] &quot; m mamy ochraniającej synka przed ojcem ani wymówek, że  tata  jest zbyt surowy, a synek za mały, słaby &quot;                      
+## [3] &quot; m do twojej żony, że ten dzidziuś to wykapany  tata  ! - usłyszałam za sobą. - Czyj tata &quot;                                    
+## [4] &quot; tata! - usłyszałam za sobą. - Czyj  tata  ? - nie zrozumiał mąż, stawiając siatkę z ciastem &quot;                                 
+## [5] &quot; W sierpniu w piaskownicy spotkałam mężczyznę. Był to  tata  Rafałka. Siedział na urlopie wychowawczym i spacerował z synkiem &quot;
+## [6] &quot; on, więc nie chcieli tracić takich pieniędzy. Nianiek  tata  Rafałka nie uznawał. Wiedział mnóstwo o porodach, no &quot;</code></pre>
+<ul>
+<li><strong><code>write</code></strong> argument writes a file in the working derictory. If FALSE, then it creates a dataframe in Global Environment. Otherwise function writes a .tsv file with the name frome the argument value. By default is FALSE.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pl_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;tata&quot;</span>, <span class="dt">write =</span> <span class="st">&quot;myquiry&quot;</span>)</code></pre></div>
+<p>The <strong><code>query</code></strong> argument can be filled with regular expressions or CQL (corpus query language):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="st">&quot;An*a&quot;</span>)
+<span class="kw">head</span>(df)</code></pre></div>
+<pre><code>##                                                              left.part
+## 1                         Ania&quot; przypiętymi do bluzek. &quot;Powinno być &quot; 
+## 2                 że znów zapada w letarg. - Zamordowana nazywała się 
+## 3  wampira grasującego po Górnym Śląsku i Zagłębiu nadano kryptonim &quot; 
+## 4      na plaży dzisiaj o piątej rano znaleziono uduszoną dziewczynę. 
+## 5     obok ich samochodów - a zwłaszcza tak atrakcyjna dziewczyna jak 
+## 6                                . Być może też krzyż i róża. A teraz 
+##   center.part                                               right.part
+## 1       Anna             &quot;, Anią to ona może być dla swojego kochanka 
+## 2       Anna              Mytzek. Była to pierwsza ofiara... Pierwsza 
+## 3       Anna          &quot;. Mało tego - ciągnął Aleksandrowski. - Ofiara 
+## 4       Anna      Sereda, lat dwadzieścia dwa, zamieszkała w Elblągu, 
+## 5       Anna    Sereda - nie pozostanie niezauważony. Mylił się. Nikt 
+## 6       Anna   Sereda we Władysławowie. Znów krzyż i róża na pośladku</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="st">&quot;[base = 'strzyc']&quot;</span>)
+<span class="kw">head</span>(df)</code></pre></div>
+<pre><code>##                                                            left.part
+## 1         rozłożone ładne brwi . Na spocone czoło spadały dawno nie 
+## 2                 dokuczliwe milczenie. Siedzą. gapią się na konia, 
+## 3                           wszy do domu. Potem się kąpali, golili, 
+## 4                   Kobieta odgarnia mu włosy z czoła, od dawna nie 
+## 5               w kaszkiecie. Blisko osadzone oczy, cienki i krótko 
+## 6  niczym wielka czarna ropucha! Na światło dzienne wyjrzały krótko 
+##     center.part
+## 1    strzyżone 
+## 2  strzygącego 
+## 3     strzygli 
+## 4    strzyżone 
+## 5    strzyżony 
+## 6    strzyżone 
+##                                                           right.part
+## 1  ciemne włosy, pozbawione połysku, jak sierść niedożywionego kota 
+## 2     uszami, na dropiatą kurę, która rozgrzebawszy ziemię pazurami 
+## 3                 , myli głowy, przepierali, opatrywali, aż stawali 
+## 4                     . KOBIETA - Powinieneś się ostrzyc. Poproś go 
+## 5                  wąsik. Przed nim kufel piwa. Za barem właściciel 
+## 6       blond włosy, które, jak zaskoczony Ze-Zorro zdążył zauważyć</code></pre>
 </div>
 <div id="python-version-2" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> Python version</h3>

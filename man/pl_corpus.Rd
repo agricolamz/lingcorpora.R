@@ -4,7 +4,7 @@
 \alias{pl_corpus}
 \title{Post query to the National Corpus of Polish (nkjp.pl). Don't forget to check http://nkjp.pl/poliqarp/help/plse3.html#x4-50003 for advanced query language.}
 \usage{
-pl_corpus(query, tag = F, n_results = 100, corpus = "nkjp300", kwic = T,
+pl_corpus(query, tag = F, n_results = 10, corpus = "nkjp300", kwic = T,
   write = F)
 }
 \arguments{
