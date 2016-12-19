@@ -254,6 +254,7 @@ div.tocify {
 <ul>
 <li><a href="http://www.ruscorpora.ru/">National Corpus of Russian Language</a></li>
 <li><a href="nkjp.pl">National Corpus of Polish</a></li>
+<li><a href="http://baltoslav.eu/avar/index.php">Avar Text Corpus</a></li>
 </ul>
 </div>
 <div id="instalation" class="section level1 tabset tabset-fade tabset-pills">
@@ -277,6 +278,7 @@ devtools::<span class="kw">install_github</span>(<span class="st">&quot;agricola
 </div>
 <div id="usage" class="section level1">
 <h1><span class="header-section-number">3</span> Usage</h1>
+<p>Most of the functions in <code>lingcorpora</code> have the same syntax: first part is a language iso code, the second part is <code>_corpus</code>.</p>
 <div id="national-corpus-of-russian-language" class="section level2 tabset tabset-fade tabset-pills">
 <h2><span class="header-section-number">3.1</span> National Corpus of Russian Language</h2>
 <div id="r-version-1" class="section level3">
@@ -290,12 +292,12 @@ devtools::<span class="kw">install_github</span>(<span class="st">&quot;agricola
 <h2><span class="header-section-number">3.2</span> National Corpus of Polish</h2>
 <div id="r-version-2" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> R version</h3>
-<p>The basic function for searching in National Corpus of Polish is <code>pl_corpus</code>. This function creates a dataframe with a results from the corpus. The function <code>pl_corpus</code> have a lot of arguments (as in all R function, it is not obligatory to write names of the arguments):</p>
+<p>The basic function for searching in National Corpus of Polish is <code>pol_corpus</code>. This function creates a dataframe with a results from the corpus. The function <code>pol_corpus</code> have a lot of arguments (as in all R function, it is not obligatory to write names of the arguments):</p>
 <ul>
 <li><strong><code>query</code></strong> — the sole obligatory argument with your query</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lingcorpora)
-df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;tata&quot;</span>)
+df &lt;-<span class="st"> </span><span class="kw">pol_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;tata&quot;</span>)
 <span class="kw">head</span>(df)</code></pre></div>
 <pre><code>##                                                  left.part center.part
 ## 1          mi łóżko do snu, pieczołowicie, jak kiedyś mój        tata 
@@ -314,7 +316,7 @@ df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="
 <ul>
 <li><strong><code>tag</code></strong> — if TRUE all the words in a result will have morphological tags</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;tata&quot;</span>, <span class="dt">tag =</span> <span class="ot">TRUE</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">pol_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;tata&quot;</span>, <span class="dt">tag =</span> <span class="ot">TRUE</span>)
 <span class="kw">head</span>(df)</code></pre></div>
 <pre><code>##                                                                                                                                                                                                                                                                                left.part
 ## 1                                            mi [ja:ppron12:sg:dat:m1:pri:nakc] łóżko [łóżko:subst:sg:acc:n] do [do:prep:gen] snu [sen:subst:sg:gen:m3], [,:interp] pieczołowicie [pieczołowicie:adv:pos], [,:interp] jak [jak:adv:pos] kiedyś [kiedyś:adv] mój [mój:adj:sg:nom:m1:pos] 
@@ -340,7 +342,7 @@ df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="
 <ul>
 <li><strong><code>n_results</code></strong> defines number of examples from the corpus. By default is 10.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;tata&quot;</span>, <span class="dt">n_results =</span> <span class="dv">6</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">pol_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;tata&quot;</span>, <span class="dt">n_results =</span> <span class="dv">6</span>)
 <span class="kw">head</span>(df)</code></pre></div>
 <pre><code>##                                                  left.part center.part
 ## 1          mi łóżko do snu, pieczołowicie, jak kiedyś mój        tata 
@@ -359,7 +361,7 @@ df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="
 <ul>
 <li><strong><code>corpus</code></strong> — vector with a type of the corpus: “nkjp300”, “nkjp1800”, “nkjp1M”, “ipi250”, “ipi030”, “frequency-dictionary”</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;tata&quot;</span>, <span class="dt">corpus =</span> <span class="st">&quot;nkjp1M&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">pol_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;tata&quot;</span>, <span class="dt">corpus =</span> <span class="st">&quot;nkjp1M&quot;</span>)
 <span class="kw">head</span>(df)</code></pre></div>
 <pre><code>##                                                  left.part center.part
 ## 1          mi łóżko do snu, pieczołowicie, jak kiedyś mój        tata 
@@ -378,7 +380,7 @@ df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="
 <ul>
 <li><strong><code>kwic</code></strong> (key word in context) is the format for resulted lines. If TRUE, then it returns a dataframe with query in the middle and left and right contexts. If FALSE, then it returns each result in one string. By default is TRUE.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;tata&quot;</span>, <span class="dt">kwic =</span> <span class="ot">FALSE</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">pol_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;tata&quot;</span>, <span class="dt">kwic =</span> <span class="ot">FALSE</span>)
 <span class="kw">head</span>(df)</code></pre></div>
 <pre><code>## [1] &quot; mi łóżko do snu, pieczołowicie, jak kiedyś mój  tata  . Noemi przyrządziła pyszny obiad: panierowaną pierś kurczaka z &quot;       
 ## [2] &quot; m mamy ochraniającej synka przed ojcem ani wymówek, że  tata  jest zbyt surowy, a synek za mały, słaby &quot;                      
@@ -389,9 +391,9 @@ df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="
 <ul>
 <li><strong><code>write</code></strong> argument writes a file in the working derictory. If FALSE, then it creates a dataframe in Global Environment. Otherwise function writes a .tsv file with the name frome the argument value. By default is FALSE.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pl_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;tata&quot;</span>, <span class="dt">write =</span> <span class="st">&quot;myquiry&quot;</span>)</code></pre></div>
-<p>The <strong><code>query</code></strong> argument can be filled with regular expressions or CQL (corpus query language):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="st">&quot;An*a&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pol_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;tata&quot;</span>, <span class="dt">write =</span> <span class="st">&quot;myquiry&quot;</span>)</code></pre></div>
+<p>The <strong><code>query</code></strong> argument can be filled with regular expressions or CQL (corpus query language), read more at the <a href="http://nkjp.pl/poliqarp/help/plse3.html#x4-50003">help page</a>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">pol_corpus</span>(<span class="st">&quot;An*a&quot;</span>)
 <span class="kw">head</span>(df)</code></pre></div>
 <pre><code>##                                                              left.part
 ## 1                         Ania&quot; przypiętymi do bluzek. &quot;Powinno być &quot; 
@@ -407,7 +409,7 @@ df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="
 ## 4       Anna      Sereda, lat dwadzieścia dwa, zamieszkała w Elblągu, 
 ## 5       Anna    Sereda - nie pozostanie niezauważony. Mylił się. Nikt 
 ## 6       Anna   Sereda we Władysławowie. Znów krzyż i róża na pośladku</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="st">&quot;[base = 'strzyc']&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">pol_corpus</span>(<span class="st">&quot;[base = 'strzyc']&quot;</span>)
 <span class="kw">head</span>(df)</code></pre></div>
 <pre><code>##                                                            left.part
 ## 1         rozłożone ładne brwi . Na spocone czoło spadały dawno nie 
@@ -458,6 +460,81 @@ df &lt;-<span class="st"> </span><span class="kw">pl_corpus</span>(<span class="
 ## 7   Rafałka zabrał rodzinę do stadniny  
 ## 8        Rafałka? - zainteresowała się  
 ## 9                     Rafałka. - Aha -</code></pre>
+</div>
+</div>
+<div id="avar-text-corpus" class="section level2 tabset tabset-fade tabset-pills">
+<h2><span class="header-section-number">3.3</span> Avar Text Corpus</h2>
+<div id="r-version-3" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> R version</h3>
+<p>The basic function for searching in National Corpus of Polish is <code>ava_corpus</code>. This function creates a dataframe with a results from the corpus. The function <code>ava_corpus</code> have a lot of arguments (as in all R function, it is not obligatory to write names of the arguments):</p>
+<ul>
+<li><strong><code>query</code></strong> — the sole obligatory argument with your query</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">ava_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;шагьар&quot;</span>)
+<span class="kw">head</span>(df)</code></pre></div>
+<pre><code>##                                                                                                                             left.part
+## 1                                                                              Нилъеца Расул ХIамзатовасул цIар проспектазда лъуниги,
+## 2                                                                                                                        ХIабургъараб
+## 3                                                                                                                     Стамбул шагьар.
+## 4                                                                цIунулеб рагъулъ гьев лъукъана Кут эль Амара абураб бакIалда аскIов.
+## 5                                                                                            болшевикIаз сверизабуна МахIачхъалаялде.
+## 6 къецазда тIоцебесеб бакI нилъер тахшагьаралъе кьун хадуб, гьаб сияхIалда анкьабилеб бакIалде бачIиналда лъицаха тамашалъи гьабилеб?
+##   center.part
+## 1      шагьар
+## 2      шагьар
+## 3      шагьар
+## 4      шагьар
+## 5      шагьар
+## 6      шагьар
+##                                                                                                                                                                                                                   right.part
+## 1                    бакьулъ памятникал раниги, щибаб бокIнилъ гьесул нусцIул рагIарал ва чIамучIлъарал рагIаби такрар гьаруниги къанагIат гуони дандчIваларо гъасда цIадухъ гIодовги чIун Расулил асарал цIалулел гIадамал.
+## 2 Тероризмалда дандечIараб комитеталъ (НАК) лъазабуна, оперативияб информациялда рекъон, МахIачхъалаялъул Юбилейная къотIнов цо рокъов вахчун вугин 3 маялда полициялъул посталда теракт гьабиялда щаклъи бугезул цояв абун.
+## 3                                                                                                                                            Гьесул гIумру ун букIана лъабкъойилъа тIаде 1916 соналъул 23 февралалда Багъдад
+## 4                                                                                                                                      Гьеб пикруялда тIадрекъолезулъ вуго дунги, щайгурелъул Шамил-хъала абун цIар букIараб
+## 5                                                                                                                                                                                   Россиялда бищунго берцинаб ва санагIатаб
+## 6                                                                                                                                 28 ГIагараб заманалда МахIачхъала шагьаралъе Дунялалда бищунго кьвагьа-гIанхъи къанагIатаб</code></pre>
+<ul>
+<li><strong><code>kwic</code></strong> (key word in context) is the format for resulted lines. If TRUE, then it returns a dataframe with query in the middle and left and right contexts. If FALSE, then it returns each result in one string. By default is TRUE.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">ava_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;вацазе&quot;</span>, <span class="dt">kwic =</span> <span class="ot">FALSE</span>)
+<span class="kw">head</span>(df)</code></pre></div>
+<pre><code>## [1] &quot; Гьеб битIараб буго, гьесвацазегьукъана суалалгун жиндихъе рачIине.&quot;                                                                                                                                                                                                                                                                                                                      
+## [2] &quot; Церехун рехсарал диналъулвацазегьаризе бокьун буго щулияб сахлъи, халатаб гIумру, Аллагь разилъи.&quot;                                                                                                                                                                                                                                                                                       
+## [3] &quot; НагIана кьолеб буго боцIи сабалъун гьитIинав вац кьурулъе гъурал вацазе, гьоболлъухъ ахIун Хочбар вухIарав хIалихьатав ханасе, Шамилидаги ХIажимурадидаги гьоркьоб мацI гьабурав жасусасе, берталъ Элдариласе жагун загьру кьурав хIакимасе, балъго хIиллаги ургъун МахIмуд чIварав гьудуласе.вацазе Бищунго гьитIинав МухIамадица гьоко-оц хьвадизабун гIиял къайиялда хIалтIулел ругел&quot;
+## [4] &quot;кумек гьабулеб букIана.вацазе Гьанже дир калам гьадинаб жоялъул хIакъалъулъ букIине буго, гIолохъаби, дидаса лъикI нужедаго лъалеб батизеги бегьула, гIемерал запорожцазда тIад гIаракъи бичулел жугьутIазе ва жидерго&quot;                                                                                                                                                                   
+## [5] &quot;гIемераб налъи ккеялъ, цо гIаданги божулев чи хутIун гьечIо.вацазе Эбелалъе босараб кверлъинги буго, инсуе ва&quot;                                                                                                                                                                                                                                                                            
+## [6] &quot;хIадурун гурдалги руго - ракIрекъани гьезул.вацазе Нужерго&quot;</code></pre>
+<ul>
+<li><strong><code>write</code></strong> argument writes a file in the working derictory. If FALSE, then it creates a dataframe in Global Environment. Otherwise function writes a .tsv file with the name frome the argument value. By default is FALSE.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ava_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;васазе&quot;</span>, <span class="dt">write =</span> <span class="st">&quot;myquiry&quot;</span>)</code></pre></div>
+<p>The <strong><code>query</code></strong> argument can be filled with regular expressions or CQL (corpus query language), read more at the <a href="http://baltoslav.eu/avar/index.php">help page</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">ava_corpus</span>(<span class="dt">query =</span> <span class="st">&quot;магIарул*&quot;</span>)
+<span class="kw">head</span>(df)</code></pre></div>
+<pre><code>##                                                                                                                      left.part
+## 1                                                                                                      Гьелъие мустахIикълъана
+## 2  Расулил хIакъалъулъ хъвараб тIехьалдаго цадахъ ЗайнулгIабидовас премиялъе бихьизабун бугоан Авартеатралъул вукIарав артист,
+## 3                                                                                      МахIмуд ГIабдулхаликъовасул хIакъалъулъ
+## 4                                                                                                         Гьезда гьоркьов вуго
+## 5                                            Гьел чIвай - хвеязул рахас жеги лъугIун гьечIо, гьаб кечI хъваралдаса чан лебалав
+## 6                                                        Дол соназда тамахаб ва миллаталъул интересал цIуничIеб политикаялъухъ
+##    center.part
+## 1 магIарулазул
+## 2 магIарулазул
+## 3     магIарул
+## 4 магIарулазул
+## 5   магIарулав
+## 6 магIарулазул
+##                                                                                                                                                 right.part
+## 1                                                                                                                            шагIир Махсуд ЗайнулгIабидов.
+## 2                                                                         Малла Насрудинин абулев МахIмуд ГIабдулхаликъовасул хIакъалъулъ хъвараб тIехьги.
+## 3                                                            мацIалда ЗайнулгIабидовас хъвараб тIехь гIурусалде буссинабун буго Арбен Къардаш абулев чияс.
+## 4 цIар рагIарав хъвадарухъан ва журналист ГъазимухIамад ГъалбацIовги ва Москваялда вугев жигарав жамагIатчи ва тохтур ЦIумадаса МухIамад ГIабдулхабировги.
+## 5                                                                                         къаникье арав, газеталъул гьурмада бакI гIеларо гьезул сияхIазе.
+## 6                                                                                                            киналго политикал ралъаргъун рукIана кочIолъ.</code></pre>
+</div>
+<div id="python-version-3" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Python version</h3>
 </div>
 </div>
 </div>

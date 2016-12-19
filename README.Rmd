@@ -17,6 +17,7 @@ output:
 
 * [National Corpus of Russian Language](http://www.ruscorpora.ru/)
 * [National Corpus of Polish](nkjp.pl)
+* [Avar Text Corpus](http://baltoslav.eu/avar/index.php)
 
 # Instalation {.tabset .tabset-fade .tabset-pills}
 ## R version
@@ -48,57 +49,63 @@ import lingcorpora
 ADD about python3!!!
 
 # Usage
+Most of the functions in `lingcorpora` have the same syntax: first part is a language iso code, the second part is `_corpus`.
+
 ## National Corpus of Russian Language {.tabset .tabset-fade .tabset-pills}
+
 ### R version
+
 ### Python version
+
 ## National Corpus of Polish {.tabset .tabset-fade .tabset-pills}
+
 ### R version
-The basic function for searching in National Corpus of Polish is `pl_corpus`. This function creates a dataframe with a results from the corpus. The function `pl_corpus` have a lot of arguments (as in all R function, it is not obligatory to write names of the arguments):
+The basic function for searching in National Corpus of Polish is `pol_corpus`. This function creates a dataframe with a results from the corpus. The function `pol_corpus` have a lot of arguments (as in all R function, it is not obligatory to write names of the arguments):
 
 * **`query`** --- the sole obligatory argument with your query
 ```{r}
 library(lingcorpora)
-df <- pl_corpus(query = "tata")
+df <- pol_corpus(query = "tata")
 head(df)
 ```
 
 * **`tag`** --- if TRUE all the words in a result will have morphological tags
 ```{r}
-df <- pl_corpus(query = "tata", tag = TRUE)
+df <- pol_corpus(query = "tata", tag = TRUE)
 head(df)
 ```
 
 * **`n_results`** defines number of examples from the corpus. By default is 10.
 ```{r}
-df <- pl_corpus(query = "tata", n_results = 6)
+df <- pol_corpus(query = "tata", n_results = 6)
 head(df)
 ```
 
 * **`corpus`** --- vector with a type of the corpus: "nkjp300", "nkjp1800", "nkjp1M", "ipi250", "ipi030", "frequency-dictionary"
 ```{r}
-df <- pl_corpus(query = "tata", corpus = "nkjp1M")
+df <- pol_corpus(query = "tata", corpus = "nkjp1M")
 head(df)
 ```
 
 * **`kwic`** (key word in context) is the format for resulted lines. If TRUE, then it returns a dataframe with query in the middle and left and right contexts. If FALSE, then it returns each result in one string. By default is TRUE.
 ```{r}
-df <- pl_corpus(query = "tata", kwic = FALSE)
+df <- pol_corpus(query = "tata", kwic = FALSE)
 head(df)
 ```
 * **`write`** argument writes a file in the working derictory. If FALSE, then it creates a dataframe in Global Environment. Otherwise function writes a .tsv file with the name frome the argument value. By default is FALSE.
 ```{r, eval=FALSE}
-pl_corpus(query = "tata", write = "myquiry")
+pol_corpus(query = "tata", write = "myquiry")
 ```
 
-The **`query`** argument can be filled with regular expressions or CQL (corpus query language):
+The **`query`** argument can be filled with regular expressions or CQL (corpus query language), read more at the [help page](http://nkjp.pl/poliqarp/help/plse3.html#x4-50003):
 
 ```{r}
-df <- pl_corpus("An*a")
+df <- pol_corpus("An*a")
 head(df)
 ```
 
 ```{r}
-df <- pl_corpus("[base = 'strzyc']")
+df <- pol_corpus("[base = 'strzyc']")
 head(df)
 ```
 
@@ -107,3 +114,31 @@ head(df)
 from lingcorpora import pl_search as pl_corpus
 print(pl_corpus("tata"))
 ```
+
+## Avar Text Corpus {.tabset .tabset-fade .tabset-pills}
+
+### R version
+The basic function for searching in National Corpus of Polish is `ava_corpus`. This function creates a dataframe with a results from the corpus. The function `ava_corpus` have a lot of arguments (as in all R function, it is not obligatory to write names of the arguments):
+
+* **`query`** --- the sole obligatory argument with your query
+```{r}
+df <- ava_corpus(query = "шагьар")
+head(df)
+```
+* **`kwic`** (key word in context) is the format for resulted lines. If TRUE, then it returns a dataframe with query in the middle and left and right contexts. If FALSE, then it returns each result in one string. By default is TRUE.
+```{r}
+df <- ava_corpus(query = "вацазе", kwic = FALSE)
+head(df)
+```
+* **`write`** argument writes a file in the working derictory. If FALSE, then it creates a dataframe in Global Environment. Otherwise function writes a .tsv file with the name frome the argument value. By default is FALSE.
+```{r, eval=FALSE}
+ava_corpus(query = "васазе", write = "myquiry")
+```
+
+The **`query`** argument can be filled with regular expressions or CQL (corpus query language), read more at the [help page](http://baltoslav.eu/avar/index.php)
+```{r}
+df <- ava_corpus(query = "магIарул*")
+head(df)
+```
+
+### Python version

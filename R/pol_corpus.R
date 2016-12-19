@@ -1,25 +1,27 @@
+#' Polish search
+#'
 #' Post query to the National Corpus of Polish (nkjp.pl). Don't forget to check http://nkjp.pl/poliqarp/help/plse3.html#x4-50003 for advanced query language.
 #' @param query Vector of length 1 which contain query.
 #' @param tag Logical. Do you need morphological tags? By default is FALSE.
 #' @param n_results Integer. Defines number of examples from the corpus. By default is 10
-#' @param corpus vector with a type of the corpus: "nkjp300", "nkjp1800", "nkjp1M", "ipi250", "ipi030", "frequency-dictionary"
+#' @param corpus Vector with a type of the corpus: "nkjp300", "nkjp1800", "nkjp1M", "ipi250", "ipi030", "frequency-dictionary"
 #' @param kwic Logical. KWIC (key word in context) is the format for resulted lines. If TRUE, then it returns a dataframe with query in the middle and left and right contexts. If FALSE, then it returns each result in one string. By default is TRUE.
 #' @param write This argument writes a file in the working derictory (see function getwd() and setwd() for more information). If FALSE, then it creates a dataframe in Global Environment. Otherwise function writes a .tsv file with the name frome the argument value. By default is FALSE.
 #' @author George Moroz <agricolamz@gmail.com>
 #' @examples
-#' pl_corpus("boisz się")
-#' pl_corpus("boisz się", tag = TRUE, n_results = 40)
-#' pl_corpus("An*a")
-#' pl_corpus("[base = 'strzyc']")
+#' pol_corpus("boisz się")
+#' pol_corpus("boisz się", tag = TRUE, n_results = 40)
+#' pol_corpus("An*a")
+#' pol_corpus("[base = 'strzyc']")
 #' @export
 #' @import xml2
 #' @import selectr
 #' @import httr
 #' @import rvest
 
-pl_corpus <- function(query, tag = F, n_results = 10, corpus = "nkjp300", kwic = T, write = F){
+pol_corpus <- function(query, tag = F, n_results = 10, corpus = "nkjp300", kwic = T, write = F){
     if(length(query) != 1){
-      warning('x must be of length 1. If you want a dataframe with different queries try \n do.call("rbind.data.frame", sapply(x, pl.corpus, simplify = F))')
+      warning('x must be of length 1. If you want a dataframe with different queries try \n do.call("rbind.data.frame", sapply(x, pol.corpus, simplify = F))')
     }
     # show tags?
     if(tag == T){
@@ -117,4 +119,3 @@ pl_corpus <- function(query, tag = F, n_results = 10, corpus = "nkjp300", kwic =
       write.table(results, paste0(write, ".csv"), row.names = F, sep = "\t")
     } else {return(results)}
 }
-# end of the function
