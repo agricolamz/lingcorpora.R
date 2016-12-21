@@ -4,10 +4,12 @@
 \alias{ava_corpus}
 \title{Avar search}
 \usage{
-ava_corpus(query, kwic = TRUE, write = FALSE)
+ava_corpus(query, n_results = 20, kwic = TRUE, write = FALSE)
 }
 \arguments{
 \item{query}{Vector of length 1 which contain query.}
+
+\item{n_results}{Integer. Defines number of examples from the corpus. By default is 10}
 
 \item{kwic}{Logical. KWIC (key word in context) is the format for resulted lines. If TRUE, then it returns a dataframe with query in the middle and left and right contexts. If FALSE, then it returns each result in one string. By default is TRUE.}
 
@@ -19,7 +21,8 @@ Post query to the Avar Text Corpus (http://baltoslav.eu/avar/index.php). Don't f
 \examples{
 ava_corpus("магIарул")
 ava_corpus("магIарул*")
-ava_corpus("ва(ц|с)азе", kwic = F)
+ava_corpus("ва(ц|с)азе", n_results = 50)
+ava_corpus("(чIужу|руччаби)", kwic = F)
 }
 \author{
 George Moroz <agricolamz@gmail.com>
