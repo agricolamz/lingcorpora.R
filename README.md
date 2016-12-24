@@ -1,6 +1,6 @@
 # Lingcorpora
 
-`lingcorpora` package provides R with API from different linguistic corpora. A tutorial for this package is avaliable on GitHub wiki. This package includes APIs for:
+`lingcorpora` package provides R with API from different linguistic corpora. This package includes APIs for:
 
 * [Abkhaz Text Corpus](http://baltoslav.eu/apsua/index.php)
 * [Avar Text Corpus](http://baltoslav.eu/avar/index.php)
