@@ -2,7 +2,7 @@
     "path" : "~/_DATA/OneDrive1/_Work/github/lingcorpora/lingcorpora.R/R",
     "sortOrder" : [
         {
-            "ascending" : true,
+            "ascending" : false,
             "columnIndex" : 2
         }
     ]

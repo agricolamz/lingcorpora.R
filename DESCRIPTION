@@ -8,13 +8,13 @@ Imports:
     xml2,
     selectr,
     httr,
-    rvest
+    rvest,
+    stringr
 Author: George Moroz <agricolamz@gmail.com>
 Maintainer: George Moroz <agricolamz@gmail.com>
 Description: This package provides R with API from different linguistic
-    corpora. A tutorial for this package is avaliable on GitHub (https://github.com/
-    agricolamz/lingcorpora.R/wiki). This package includes APIs for National Corpus of
-    Polish (nkjp.pl)
+    corpora. A tutorial for this package is avaliable on GitHub (https://agricolamz.github.io/lingcorpora.R/). This package includes APIs for National Corpus of
+    Polish (nkjp.pl), Avar Text Corpus (http://baltoslav.eu/avar/index.php).
 License: GPL (>= 2)
 URL: https://github.com/agricolamz/lingcorpora.R
 Encoding: UTF-8

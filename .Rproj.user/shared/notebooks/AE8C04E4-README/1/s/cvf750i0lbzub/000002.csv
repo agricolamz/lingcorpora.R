@@ -1,2 +1,0 @@
-"0","df <- pl_corpus(query = ""tata"", n_results = 6)"
-"0","head(df)"

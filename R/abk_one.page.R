@@ -1,18 +1,18 @@
-#' Avar one page search
+#' Abkhaz one page search
 #'
-#' Post query to the Avar Text Corpus (http://baltoslav.eu/avar/index.php). Don't forget to check main page for advanced query language.
+#' Post query to the Abkhaz Text Corpus (http://baltoslav.eu/apsua/index.php). Don't forget to check main page for advanced query language.
 #' @param my.url Vector with a link
 #' @author George Moroz <agricolamz@gmail.com>
 #' @examples
-#' ava_one.page.get("http://baltoslav.eu/avar/index.php?xxx=магIарул*&met=kon&ks=ca&f=d&mova=en#wierch")
-#'
+#' ava_one.page.get("http://baltoslav.eu/apsua/index.php?xxx=%D0%B1%D1%8B%D0%B7%D1%88%D3%99%D0%B0&met=kon&ks=ca&mova=en#wierch")
 #' @import xml2
 #' @import selectr
 #' @import httr
 #' @import rvest
 #' @import stringr
 
-ava_one.page <- function(my.url){
+
+abk_one.page <- function(my.url){
   # get page
   page <- xml2::read_html(my.url)
   # get context
@@ -36,4 +36,4 @@ ava_one.page <- function(my.url){
                         right.part = text_parts[1:20*2])
 
   return(results)
-  }
+}

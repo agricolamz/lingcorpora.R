@@ -1,2 +1,0 @@
-"0","df <- pl_corpus(query = ""tata"", tag = TRUE)"
-"0","head(df)"
