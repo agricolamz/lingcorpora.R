@@ -16,7 +16,7 @@ ava_corpus(query, n_results = 20, kwic = TRUE, write = FALSE)
 \item{write}{This argument writes a file in the working derictory (see function getwd() and setwd() for more information). If FALSE, then it creates a dataframe in Global Environment. Otherwise function writes a .tsv file with the name frome the argument value. By default is FALSE.}
 }
 \description{
-Post query to the Avar Text Corpus (http://baltoslav.eu/avar/index.php). Don't forget to check main page for advanced query language.
+Post query to the Avar Text Corpus (http://baltoslav.eu/avar/index.php, 2,000,693 words). Don't forget to check main page for advanced query language.
 }
 \examples{
 ava_corpus("магIарул")

@@ -1,6 +1,6 @@
 #' Abkhaz search
 #'
-#' Post query to the Abkhaz Text Corpus (http://baltoslav.eu/apsua/index.php). Don't forget to check main page for advanced query language.
+#' Post query to the Abkhaz Text Corpus (http://baltoslav.eu/apsua/index.php, 2,010,052 words). Don't forget to check main page for advanced query language.
 #' @param query Vector of length 1 which contain query.
 #' @param n_results Integer. Defines number of examples from the corpus. By default is 10
 #' @param kwic Logical. KWIC (key word in context) is the format for resulted lines. If TRUE, then it returns a dataframe with query in the middle and left and right contexts. If FALSE, then it returns each result in one string. By default is TRUE.
